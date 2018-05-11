@@ -1,0 +1,14 @@
+
+// Convert Char to String
+Chars_TO_Strg(Chars:=&quot;O2D220_DB&quot;.RcvdData,pChars:=0,Cnt:=64,Strg=&gt;&quot;Outputs&quot;.O2D220);
+
+//Find Percentage Match
+&quot;Outputs&quot;.Percent := DELETE(IN:=&quot;Outputs&quot;.O2D220, L:=10, P:=FIND(IN1:=&quot;Outputs&quot;.O2D220, IN2:='start'));
+&quot;Outputs&quot;.Percent := DELETE(IN := &quot;Outputs&quot;.Percent, L := 60, P := FIND(IN1 := &quot;Outputs&quot;.Percent, IN2 := '#'));
+
+//Find Model
+&quot;Outputs&quot;.Model := DELETE(IN := &quot;Outputs&quot;.O2D220, L := 20, P := FIND(IN1 := &quot;Outputs&quot;.O2D220, IN2 := 'start'));
+&quot;Outputs&quot;.Model := DELETE(IN := &quot;Outputs&quot;.Model, L := 60, P := FIND(IN1 := &quot;Outputs&quot;.Model, IN2 := '#'));
+
+//Conversion to binary output
+STRG_VAL(IN:=&quot;Outputs&quot;.Model, FORMAT:=0000, P:=1, OUT=&gt;#model);
